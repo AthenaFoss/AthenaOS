@@ -12,8 +12,6 @@
     size?: "xs" | "sm" | "md" | "lg" | "xl";
     appId?: string;
   } = $props();
-
-  // Check if this is finder or vscode to apply special scaling
   const isSpecialApp = appId === "dev.kennyhui.finder" || appId === "dev.kennyhui.vscode";
 </script>
 

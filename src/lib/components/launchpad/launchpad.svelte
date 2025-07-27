@@ -49,7 +49,7 @@
         class="group relative mx-auto flex w-fit cursor-default flex-col items-center gap-2 rounded-sm focus:outline-none"
       >
         <div class="group-active:brightness-50">
-          <AppIcon src={app.icon.default} alt="{app.name} icon" size="lg" />
+          <AppIcon src={app.icon.default} alt="{app.name} icon" size="lg" appId={app.id} />
         </div>
         <p
           class="text-shadow pointer-events-none absolute top-full left-1/2 mt-2.5 w-32 -translate-x-1/2 text-center text-[13px]"

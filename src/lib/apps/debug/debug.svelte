@@ -23,7 +23,7 @@
       {#each applications as app}
         <li class="even:bg-base-content/5 grid grid-cols-[auto_1fr] gap-2 px-2 py-1">
           <div class="flex items-center">
-            <AppIcon src={app.icon.default} size="xs" />
+            <AppIcon src={app.icon.default} size="xs" appId={app.id} />
           </div>
           <div>
             <p>{app.name}</p>

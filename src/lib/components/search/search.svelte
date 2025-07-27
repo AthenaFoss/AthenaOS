@@ -109,7 +109,7 @@
               close();
             }}
           >
-            <AppIcon src={app.icon.default} alt="{app.name} icon" size="xs" />
+            <AppIcon src={app.icon.default} alt="{app.name} icon" size="xs" appId={app.id} />
             <span>{app.name}</span>
             <span class="text-base-content/50 overflow-hidden text-ellipsis whitespace-nowrap">
             </span>

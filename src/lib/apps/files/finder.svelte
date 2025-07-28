@@ -7,6 +7,7 @@
   import { Icons } from './icons'; 
 
   import MemberDetails from '$lib/components/ui/MemberDetails.svelte'
+  import WindowContent from '$lib/components/window/window-content.svelte';
   
 
   

@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
+  import WindowContent from "$lib/components/window/window-content.svelte";
+import { onMount } from 'svelte';
 
   
  let content = `Welcome to AthenaFOSS!
@@ -50,6 +51,8 @@ Let’s build something legendary.`;
   });
 </script>
 
+<WindowContent>
+
 <div class="flex flex-col h-screen w-full mx-auto rounded-xl shadow-lg border border-gray-700 bg-[#1e1e1e] overflow-hidden font-inter">
   
   <div class="flex items-center justify-between bg-[#2c2c2c] text-gray-300 px-4 py-2 text-sm font-semibold rounded-t-xl">
@@ -78,6 +81,7 @@ Let’s build something legendary.`;
     <span>UTF-8 | Plain Text</span>
   </div>
 </div>
+</WindowContent>
 
 
 <style>

@@ -8,6 +8,6 @@
   } = $props();
 </script>
 
-<div data-nodrag class="window-content p-5">
+<div data-nodrag class="window-content">
   {@render children?.()}
 </div>

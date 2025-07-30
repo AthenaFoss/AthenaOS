@@ -12,6 +12,14 @@
     launchpad.open = open;
   });
 
+  // Check for pending show requests when component becomes available
+  $effect(() => {
+    if (modal && launchpad.pendingShow) {
+      launchpad.pendingShow = false;
+      show();
+    }
+  });
+
   export const show = () => {
     modal?.show();
   };

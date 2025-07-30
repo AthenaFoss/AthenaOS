@@ -23,7 +23,11 @@ export const applications: App[] = $state([
   //   .setDefaultSize({ x: 400, y: 450 }),
   new App("dev.kennyhui.launchpad", "Launchpad", query("icons/launchpad.png"))
     .setCallback(() => {
-      launchpad.current?.show();
+      if (launchpad.current) {
+        launchpad.current.show();
+      } else {
+        launchpad.pendingShow = true;
+      }
     })
     .hideFromLaunchpad(),
   new App("dev.kennyhui.about", "About", query("icons/about.png"))
@@ -127,11 +131,15 @@ export const applications: App[] = $state([
     .disableTitlebar()
     .setControlsSize("standard"),
 
-  new App("dev.kennyhui.notepad", "Notepad", query("icons/Notepad.png"))
+  new App("dev.kennyhui.notes", "Notes", query("icons/Notepad.png"))
     .setBody(Notepad)
     .setDefaultSize({
-      x:1000,
-      y:700
+      x: 1200,
+      y: 800
+    })
+    .setMinSize({
+      x: 900,
+      y: 600
     })
     .disableTitlebar()
     .setControlsSize("standard")

@@ -28,7 +28,11 @@
     if (commandKey(e)) {
       if (e.key === "l") {
         e.preventDefault();
-        launchpad.current?.toggle();
+        if (launchpad.current) {
+          launchpad.current.toggle();
+        } else {
+          launchpad.pendingShow = true;
+        }
         search.current?.close();
       }
       if (e.key === "k") {

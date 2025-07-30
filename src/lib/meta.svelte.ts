@@ -5,9 +5,11 @@ import type Search from "./components/search/search.svelte";
 export const launchpad: {
   current: Launchpad | undefined;
   open: boolean;
+  pendingShow: boolean;
 } = $state({
   current: undefined,
   open: false,
+  pendingShow: false
 });
 
 export const search: {

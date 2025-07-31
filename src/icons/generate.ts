@@ -25,12 +25,21 @@ async function generateIcon(input: string, output: string, file: string) {
   const inputPath = path.join(input, file);
   const outputPath = path.join(output, name);
 
-  const masked = await sharp(inputPath)
-    .composite([{ input: maskPath, blend: "dest-in", top: 0, left: 0 }])
-    .toBuffer();
-  await sharp(masked).resize(1024).toFormat("png").toFile(outputPath);
+  try {
+    const resizedInput = await sharp(inputPath)
+      .resize(1024, 1024, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
+      .toBuffer();
 
-  console.log(`Generated ${outputPath}`);
+    const masked = await sharp(resizedInput)
+      .composite([{ input: maskPath, blend: "dest-in", top: 0, left: 0 }])
+      .toBuffer();
+    
+    await sharp(masked).resize(1024).toFormat("png").toFile(outputPath);
+
+    console.log(`Generated ${outputPath}`);
+  } catch (error) {
+    console.error(`Error generating ${outputPath}:`, error);
+  }
 }
 
 process();

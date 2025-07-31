@@ -25,12 +25,29 @@ async function generateIcon(input: string, output: string, file: string) {
   const inputPath = path.join(input, file);
   const outputPath = path.join(output, name);
 
-  const masked = await sharp(inputPath)
-    .composite([{ input: maskPath, blend: "dest-in", top: 0, left: 0 }])
-    .toBuffer();
-  await sharp(masked).resize(1024).toFormat("png").toFile(outputPath);
+  try {
+    // First, get the image metadata to determine dimensions
+    const metadata = await sharp(inputPath).metadata();
+    
+    // Calculate the size for square cropping (use the smaller dimension)
+    const cropSize = Math.min(metadata.width || 1024, metadata.height || 1024);
+    
+    // Crop to square and resize to 1024x1024
+    const resizedInput = await sharp(inputPath)
+      .resize(cropSize, cropSize, { fit: 'cover', position: 'center' })
+      .resize(1024, 1024, { fit: 'fill' })
+      .toBuffer();
 
-  console.log(`Generated ${outputPath}`);
+    const masked = await sharp(resizedInput)
+      .composite([{ input: maskPath, blend: "dest-in", top: 0, left: 0 }])
+      .toBuffer();
+    
+    await sharp(masked).resize(1024).toFormat("png").toFile(outputPath);
+
+    console.log(`Generated ${outputPath}`);
+  } catch (error) {
+    console.error(`Error generating ${outputPath}:`, error);
+  }
 }
 
 process();

@@ -63,10 +63,10 @@
     </div>
   </div>
   <div class="relative flex px-1.5">
-    <div class="relative h-10 w-10">
+    <div class="relative h-12 w-10">
       <div class="absolute top-1/2 left-1/2 w-10 -translate-1/2" class:bounce>
         {#if app.icon?.default}
-          <AppIcon src={app.icon.default} size="sm" />
+          <AppIcon src={app.icon.default} size="sm" appId={app.id} />
         {:else}
           <div class="h-10 w-10 rounded-lg bg-gray-200 flex items-center justify-center">
             <span class="text-gray-500 text-xs font-medium">{app.name.charAt(0)}</span>

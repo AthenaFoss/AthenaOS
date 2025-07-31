@@ -97,24 +97,31 @@ export const applications: App[] = $state([
   new App("dev.kennyhui.vscode", "VS Code", query("icons/vscode.png"))
     .setBody(VSCode)
     .setDefaultSize({ x: 900, y: 600 })
-    .setMinSize({ x: 600, y: 400 })
-    .disableTitlebar()
-    .setControlsSize("standard"),
+    .setMinSize({ x: 600, y: 400 }),
   new App("dev.kennyhui.photos", "Photos", query("icons/photos.png"))
     .setBody(Photos)
     .setDefaultSize({ x: 1200, y: 800 })
     .setMinSize({ x: 400, y: 300 }),
-    new App("github.link", "GitHub", query("icons/github.png"))
+  new App("dev.kennyhui.github", "GitHub", query("icons/github.png"))
     .setBody(() => {
       window.open("https://github.com/AthenaFoss", "_blank");
       return {
         // Return a dummy element since we’re just opening a link
-        $destroy() {},
-        $set() {},
+        $destroy() { },
+        $set() { },
+      };
+    }),
+  new App("dev.kennyhui.x", "X", query("icons/x.png"))
+    .setBody(() => {
+      window.open("https://x.com/AthenaF0SS", "_blank");
+      return {
+        // Return a dummy element since we’re just opening a link
+        // $destroy() { },
+        // $set() { },
       };
     }),
 
-   new App("dev.kennyhui.finder", "Finder", query("icons/finder.png"))
+  new App("dev.kennyhui.finder", "Finder", query("icons/finder.png"))
     .setBody(Folder)
     .setDefaultSize({
       x: 1400,
@@ -130,13 +137,9 @@ export const applications: App[] = $state([
   new App("dev.kennyhui.notepad", "Notepad", query("icons/Notepad.png"))
     .setBody(Notepad)
     .setDefaultSize({
-      x:1000,
-      y:700
+      x: 1000,
+      y: 700
     })
     .disableTitlebar()
     .setControlsSize("standard")
-    
-
-
-
 ]);

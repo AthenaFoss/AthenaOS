@@ -27,7 +27,11 @@
 
   export function show() {
     clearTimeout(timeout);
-    modal?.showModal();
+    try {
+      modal?.showModal();
+    } catch (error) {
+      console.warn('showModal not supported, using fallback');
+    }
     open = true;
     onshow?.();
   }
@@ -35,7 +39,11 @@
   export function close() {
     clearTimeout(timeout);
     timeout = setTimeout(() => {
-      modal?.close();
+      try {
+        modal?.close();
+      } catch (error) {
+        console.warn('close not supported, using fallback');
+      }
     }, DURATION);
     open = false;
     onclose?.();

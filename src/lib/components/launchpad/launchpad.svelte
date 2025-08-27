@@ -21,11 +21,20 @@
   });
 
   export const show = () => {
-    modal?.show();
+    try {
+      modal?.show();
+      open = true;
+    } catch (error) {
+      console.error('Error showing launchpad:', error);
+    }
   };
 
   export const close = () => {
-    modal?.close();
+    try {
+      modal?.close();
+    } catch (error) {
+      console.error('Error closing launchpad:', error);
+    }
   };
 
   export const toggle = () => {
@@ -47,7 +56,7 @@
       close();
     }}
   >
-    {#each applications.filter((app) => app.showInLaunchpad) as app}
+    {#each applications.filter((app) => app.showInLaunchpad && app.icon?.default) as app}
       <button
         aria-label={app.name}
         onclick={() => {
@@ -57,7 +66,14 @@
         class="group relative mx-auto flex w-fit cursor-default flex-col items-center gap-2 rounded-sm focus:outline-none"
       >
         <div class="group-active:brightness-50">
-          <AppIcon src={app.icon.default} alt="{app.name} icon" size="lg" appId={app.id} />        </div>
+          {#if app.icon?.default}
+            <AppIcon src={app.icon.default} alt="{app.name} icon" size="lg" appId={app.id} />
+          {:else}
+            <div class="h-20 w-20 rounded-lg bg-gray-200 flex items-center justify-center">
+              <span class="text-gray-500 text-sm font-medium">{app.name.charAt(0)}</span>
+            </div>
+          {/if}
+        </div>
         <p
           class="text-shadow pointer-events-none absolute top-full left-1/2 mt-2.5 w-32 -translate-x-1/2 text-center text-[13px]"
         >

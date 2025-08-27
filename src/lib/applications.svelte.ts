@@ -108,17 +108,17 @@ export const applications: App[] = $state([
     .setBody(Photos)
     .setDefaultSize({ x: 1200, y: 800 })
     .setMinSize({ x: 400, y: 300 }),
-    new App("github.link", "GitHub", query("icons/github.png"))
+  new App("github.link", "GitHub", query("icons/github.png"))
     .setBody(() => {
       window.open("https://github.com/AthenaFoss", "_blank");
       return {
         // Return a dummy element since we’re just opening a link
-        $destroy() {},
-        $set() {},
+        $destroy() { },
+        $set() { },
       };
     }),
 
-   new App("dev.kennyhui.finder", "Finder", query("icons/finder.png"))
+  new App("dev.kennyhui.finder", "Finder", query("icons/finder.png"))
     .setBody(Folder)
     .setDefaultSize({
       x: 1400,
@@ -143,8 +143,4 @@ export const applications: App[] = $state([
     })
     .disableTitlebar()
     .setControlsSize("standard")
-    
-
-
-
 ]);

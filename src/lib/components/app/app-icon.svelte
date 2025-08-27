@@ -19,7 +19,8 @@
     "dev.kennyhui.photos", 
     "dev.kennyhui.finder",
     "dev.kennyhui.github",
-    "dev.kennyhui.notepad"
+    "dev.kennyhui.notepad",
+    "dev.kennyhui.x"
   ];
   
   const needsScaling = appId && smallerApps.includes(appId);

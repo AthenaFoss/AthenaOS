@@ -13,8 +13,16 @@
     appId?: string;
   } = $props();
 
-  // Check if this is finder or vscode to apply special scaling
-  const isSpecialApp = appId === "dev.kennyhui.finder" || appId === "dev.kennyhui.vscode";
+  // Apps that appear smaller and need scaling
+  const smallerApps = [
+    "dev.kennyhui.vscode",
+    "dev.kennyhui.photos", 
+    "dev.kennyhui.finder",
+    "dev.kennyhui.github",
+    "dev.kennyhui.notepad"
+  ];
+  
+  const needsScaling = appId && smallerApps.includes(appId);
 </script>
 
 <div class="drop-shadow-sm">
@@ -23,13 +31,13 @@
     {src}
     {alt}
     class={{
-      "object-cover": true,
+      "object-fill": true,
       "h-5 w-5": size === "xs",
       "h-10 w-10": size === "sm",
       "h-14 w-14": size === "md",
       "h-20 w-20": size === "lg",
       "h-30 w-30": size === "xl",
-      "scale-125 rounded-2xl": isSpecialApp, // Increase size by 25% and add more rounded corners
     }}
+    style={needsScaling ? "transform: scale(1.3); transform-origin: center;" : ""}
   />
 </div>

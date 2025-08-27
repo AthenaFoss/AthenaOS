@@ -67,7 +67,7 @@
       >
         <div class="group-active:brightness-50">
           {#if app.icon?.default}
-            <AppIcon src={app.icon.default} alt="{app.name} icon" size="lg" appId={app.id} />
+            <AppIcon src={app.icon.default} alt="{app.name} icon" size="md" appId={app.id} />
           {:else}
             <div class="h-20 w-20 rounded-lg bg-gray-200 flex items-center justify-center">
               <span class="text-gray-500 text-sm font-medium">{app.name.charAt(0)}</span>

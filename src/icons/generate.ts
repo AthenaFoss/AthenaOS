@@ -26,8 +26,16 @@ async function generateIcon(input: string, output: string, file: string) {
   const outputPath = path.join(output, name);
 
   try {
+    // First, get the image metadata to determine dimensions
+    const metadata = await sharp(inputPath).metadata();
+    
+    // Calculate the size for square cropping (use the smaller dimension)
+    const cropSize = Math.min(metadata.width || 1024, metadata.height || 1024);
+    
+    // Crop to square and resize to 1024x1024
     const resizedInput = await sharp(inputPath)
-      .resize(1024, 1024, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
+      .resize(cropSize, cropSize, { fit: 'cover', position: 'center' })
+      .resize(1024, 1024, { fit: 'fill' })
       .toBuffer();
 
     const masked = await sharp(resizedInput)
